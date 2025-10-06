@@ -1,38 +1,75 @@
 # Web Blocks
 
-A collection of reusable web components built with vanilla JavaScript and Web Components API. Perfect for building modern, framework-agnostic user interfaces.
+**🚧 Work in Progress** - A collection of reusable web components built with vanilla JavaScript and Web Components API. Currently focused on Storybook implementations with plans for broader integration.
 
-## ✨ Features
+## 📋 Current Status
 
-- **Framework Agnostic**: Works with React, Vue, Angular, or vanilla JavaScript
-- **Zero Dependencies**: Pure web components with no external dependencies
-- **Accessible**: Built with accessibility best practices
-- **Customizable**: Easy to theme with CSS custom properties
-- **TypeScript Ready**: Full type definitions available
-- **Storybook Documentation**: Interactive component playground
+This project is currently in **development phase** with the following focus:
 
-## 🚀 Quick Start
+- ✅ **Storybook Documentation**: Interactive component playground and design system
+- ✅ **Component Prototypes**: Basic Button and Input components
+- 🚧 **Integration Ready**: Future implementation will allow easy integration into your own projects
+- 🔮 **Planned Features**: Framework-agnostic usage, npm package distribution, and production-ready components
 
-### Installation
+## 🎯 What's Available Now
+
+### Storybook Playground
+The best way to explore and interact with components:
 
 ```bash
-npm install @yourusername/web-components
+# Start Storybook to see all components in action
+npm run storybook
 ```
 
-### Basic Usage
+### Live Examples
+See components in a real HTML page:
 
+```bash
+# Serve the examples page
+npm run serve
+```
+
+### Component Development
+- **Button Component**: Animated underlined text links with corner line effects
+- **Input Component**: Form inputs with validation states and accessibility features
+- **Design System**: CSS custom properties and design tokens
+- **Storybook Stories**: Interactive documentation and testing
+
+## 🔮 Future Implementation
+
+Once development is complete, you'll be able to use these components in your own projects:
+
+### Planned Integration Options
+
+#### Option 1: Direct HTML (No JavaScript required)
+```html
+<!-- Include design tokens and reset styles -->
+<link rel="stylesheet" href="./src/styles/tokens.css">
+<link rel="stylesheet" href="./src/styles/reset.css">
+
+<!-- Include the component you want to use -->
+<script src="./src/components/button/button.html"></script>
+<script src="./src/components/input/input.html"></script>
+
+<!-- Use in your HTML -->
+<wc-button variant="primary">Click me</wc-button>
+<wc-input label="Your Name" placeholder="Enter your name"></wc-input>
+```
+
+#### Option 2: JavaScript Classes
 ```javascript
 import { Button, Input } from '@yourusername/web-components';
 
 // Create a button
 const button = new Button({
   label: 'Click me',
-  variant: 'primary',
+  href: '/some-page',
   onClick: () => console.log('clicked!')
 });
 
 // Create an input
 const input = new Input({
+  label: 'Your Name',
   placeholder: 'Enter your name',
   type: 'text'
 });
@@ -42,47 +79,33 @@ document.body.appendChild(button.render());
 document.body.appendChild(input.render());
 ```
 
-### Individual Component Imports
-
-```javascript
-// Import specific components
-import { Button } from '@yourusername/web-components/button';
-import { Input } from '@yourusername/web-components/input';
-
-// Or import HTML directly
-import '@yourusername/web-components/button.html';
+#### Option 3: NPM Package
+```bash
+npm install @yourusername/web-components
 ```
 
-## 📦 Components
+## 📦 Current Components
 
-### Button
-A flexible button component with multiple variants, sizes, and states.
+*Note: These are currently available in Storybook for development and testing. Integration options will be available in future releases.*
 
-```javascript
-import { Button } from '@yourusername/web-components';
+### Button Component
+A simple underlined text link with corner lines animation on hover/focus.
 
-const button = new Button({
-  label: 'Save Changes',
-  variant: 'primary', // 'primary' | 'secondary' | 'ghost' | 'danger'
-  size: 'medium',     // 'small' | 'medium' | 'large'
-  disabled: false,
-  onClick: () => console.log('saved!')
-});
-```
+**Current Status**: ✅ Storybook stories complete, 🚧 Integration in progress
 
-### Input
-A versatile input component with validation and styling options.
+**See it in action**: Run `npm run storybook` and navigate to the Button stories
 
-```javascript
-import { Input } from '@yourusername/web-components';
+### Input Component  
+A flexible input component with validation states and various input types.
 
-const input = new Input({
-  placeholder: 'Enter your email',
-  type: 'email',
-  required: true,
-  onChange: (value) => console.log('value:', value)
-});
-```
+**Current Status**: ✅ Storybook stories complete, 🚧 Integration in progress
+
+**See it in action**: Run `npm run storybook` and navigate to the Input stories
+
+### Design System
+CSS custom properties and design tokens for consistent theming.
+
+**Current Status**: ✅ Design tokens defined, 🚧 Component integration ongoing
 
 ## 🎨 Styling
 
@@ -127,12 +150,21 @@ cd web-blocks
 # Install dependencies
 npm install
 
-# Start Storybook
+# Start Storybook (Primary development environment)
 npm run storybook
 
-# Build for production
+# Serve examples (Alternative view)
+npm run serve
+
+# Build Storybook for production
 npm run build-storybook
 ```
+
+### Current Development Focus
+- **Storybook Stories**: Interactive component documentation and testing
+- **Component Design**: Refining component APIs and behaviors
+- **Design System**: Establishing consistent patterns and tokens
+- **Integration Planning**: Preparing for future distribution and usage
 
 ### Project Structure
 ```
@@ -165,9 +197,15 @@ src/
 
 ## 📚 Documentation
 
-- [Storybook Documentation](https://yourusername.github.io/web-blocks) - Interactive component playground
-- [Component API Reference](./src/components/) - Detailed API documentation
-- [Design System](./src/styles/) - Design tokens and theming guide
+### Current Documentation
+- **Storybook Documentation** - Interactive component playground (run `npm run storybook`)
+- **Live Examples** - See components in action (run `npm run serve`)
+- **Component Stories** - Individual component documentation in Storybook
+
+### Future Documentation
+- **API Reference** - Detailed component APIs and usage patterns
+- **Integration Guides** - Step-by-step setup for different frameworks
+- **Design System Docs** - Complete theming and customization guide
 
 ## 🤝 Contributing
 
