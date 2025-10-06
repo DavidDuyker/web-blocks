@@ -22,7 +22,7 @@ export default {
     },
     options: {
       storySort: {
-        order: ['Introduction', 'Button', 'Input'],
+        order: ['Introduction', 'Link', 'Button', 'Input'],
       },
     },
   },
