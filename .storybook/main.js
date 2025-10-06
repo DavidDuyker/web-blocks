@@ -17,7 +17,6 @@ const config = {
     "options": {}
   },
   "outputDir": "../storybook-static",
-  "staticDirs": ["../stories/assets"],
   "features": {
     "buildStoriesJson": true
   },
