@@ -6,7 +6,7 @@
 
 This project is currently in **development phase** with the following focus:
 
-- ✅ **Storybook Documentation**: Interactive component playground and design system
+- ✅ **Storybook Documentation**: [Interactive component playground](https://davidduyker.github.io/web-blocks) and design system
 - ✅ **Component Prototypes**: Basic Button and Input components
 - 🚧 **Integration Ready**: Future implementation will allow easy integration into your own projects
 - 🔮 **Planned Features**: Framework-agnostic usage, npm package distribution, and production-ready components
@@ -198,7 +198,7 @@ src/
 ## 📚 Documentation
 
 ### Current Documentation
-- **Storybook Documentation** - Interactive component playground (run `npm run storybook`)
+- **[Storybook Documentation](https://davidduyker.github.io/web-blocks)** - Interactive component playground
 - **Live Examples** - See components in action (run `npm run serve`)
 - **Component Stories** - Individual component documentation in Storybook
 
