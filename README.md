@@ -1,281 +1,188 @@
-# Web Components Library
+# Web Blocks
 
-A standalone web components library with Storybook documentation for showcasing experimental and production-ready UI components. Components are framework-agnostic, build-free, and consumable via simple `<script>` tags on any static HTML site.
+A collection of reusable web components built with vanilla JavaScript and Web Components API. Perfect for building modern, framework-agnostic user interfaces.
+
+## ✨ Features
+
+- **Framework Agnostic**: Works with React, Vue, Angular, or vanilla JavaScript
+- **Zero Dependencies**: Pure web components with no external dependencies
+- **Accessible**: Built with accessibility best practices
+- **Customizable**: Easy to theme with CSS custom properties
+- **TypeScript Ready**: Full type definitions available
+- **Storybook Documentation**: Interactive component playground
 
 ## 🚀 Quick Start
 
-### CDN Usage (Recommended)
+### Installation
 
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yourusername/web-components@main/dist/index.css">
-</head>
-<body>
-  <script type="module">
-    import { Button, Card, Input, Badge, Modal } from 'https://cdn.jsdelivr.net/gh/yourusername/web-components@main/dist/index.js';
-    
-    // Create a button
-    const button = new Button({ 
-      label: 'Click me', 
-      variant: 'primary',
-      onClick: () => alert('Hello!')
-    });
-    document.body.appendChild(button.render());
-    
-    // Create a card
-    const card = new Card({ 
-      title: 'Welcome',
-      content: 'This is a card component',
-      variant: 'default'
-    });
-    document.body.appendChild(card.render());
-  </script>
-</body>
-</html>
+```bash
+npm install @yourusername/web-components
 ```
 
-### Individual Component Usage
-
-```html
-<!-- Button Component -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yourusername/web-components@main/dist/button/button.css">
-<script type="module">
-  import { Button } from 'https://cdn.jsdelivr.net/gh/yourusername/web-components@main/dist/button/button.js';
-  
-  const button = new Button({ 
-    label: 'Primary Button',
-    variant: 'primary',
-    size: 'medium'
-  });
-  document.body.appendChild(button.render());
-</script>
-```
-
-## 📚 Documentation
-
-- **[Storybook Documentation](https://yourusername.github.io/web-components)** - Interactive component playground
-- **[Component API Reference](#components)** - Detailed component documentation
-- **[CDN Usage Examples](#cdn-usage)** - Copy-paste examples for each component
-
-## 🧩 Components
-
-### Button
-Flexible button component with multiple variants and sizes.
+### Basic Usage
 
 ```javascript
+import { Button, Input } from '@yourusername/web-components';
+
+// Create a button
 const button = new Button({
   label: 'Click me',
+  variant: 'primary',
+  onClick: () => console.log('clicked!')
+});
+
+// Create an input
+const input = new Input({
+  placeholder: 'Enter your name',
+  type: 'text'
+});
+
+// Add to DOM
+document.body.appendChild(button.render());
+document.body.appendChild(input.render());
+```
+
+### Individual Component Imports
+
+```javascript
+// Import specific components
+import { Button } from '@yourusername/web-components/button';
+import { Input } from '@yourusername/web-components/input';
+
+// Or import HTML directly
+import '@yourusername/web-components/button.html';
+```
+
+## 📦 Components
+
+### Button
+A flexible button component with multiple variants, sizes, and states.
+
+```javascript
+import { Button } from '@yourusername/web-components';
+
+const button = new Button({
+  label: 'Save Changes',
   variant: 'primary', // 'primary' | 'secondary' | 'ghost' | 'danger'
   size: 'medium',     // 'small' | 'medium' | 'large'
   disabled: false,
-  onClick: () => console.log('Clicked!')
-});
-```
-
-### Card
-Flexible card component with header, body, and footer sections.
-
-```javascript
-const card = new Card({
-  title: 'Card Title',
-  subtitle: 'Card subtitle',
-  content: 'Card content goes here',
-  footer: 'Card footer',
-  variant: 'default', // 'default' | 'elevated' | 'outlined' | 'flat'
-  size: 'medium'      // 'small' | 'medium' | 'large'
+  onClick: () => console.log('saved!')
 });
 ```
 
 ### Input
-Flexible input component with validation states and various input types.
+A versatile input component with validation and styling options.
 
 ```javascript
+import { Input } from '@yourusername/web-components';
+
 const input = new Input({
-  type: 'text',
-  label: 'Your Name',
-  placeholder: 'Enter your name',
-  helperText: 'This will be displayed publicly',
-  state: 'default',   // 'default' | 'error' | 'success' | 'warning'
-  size: 'medium',     // 'small' | 'medium' | 'large'
-  required: true
+  placeholder: 'Enter your email',
+  type: 'email',
+  required: true,
+  onChange: (value) => console.log('value:', value)
 });
 ```
 
-### Badge
-Flexible badge component for status indicators and labels.
+## 🎨 Styling
 
-```javascript
-const badge = new Badge({
-  text: 'New',
-  variant: 'primary', // 'default' | 'primary' | 'success' | 'warning' | 'danger' | 'info'
-  size: 'medium',     // 'small' | 'medium' | 'large'
-  shape: 'rounded',   // 'rounded' | 'pill' | 'square'
-  dismissible: false
-});
-```
-
-### Modal
-Flexible modal component with overlay, dialog, and accessibility features.
-
-```javascript
-const modal = new Modal({
-  title: 'Modal Title',
-  content: 'Modal content goes here',
-  footer: 'Modal footer',
-  size: 'medium',     // 'small' | 'medium' | 'large' | 'fullscreen'
-  closable: true,
-  backdrop: true
-});
-
-const container = modal.render();
-document.body.appendChild(container);
-modal.open();
-```
-
-## 🎨 Design System
-
-### Design Tokens
-All components use CSS custom properties for consistent theming:
+All components use CSS custom properties for theming. Override these in your global styles:
 
 ```css
 :root {
-  --color-primary: #0066ff;
-  --color-success: #28a745;
-  --color-warning: #ffc107;
+  /* Colors */
+  --color-primary: #007bff;
+  --color-primary-hover: #0056b3;
   --color-danger: #dc3545;
-  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto;
-  --radius-md: 0.5rem;
-  --space-4: 1rem;
-  /* ... and many more */
+  --color-white: #ffffff;
+  
+  /* Spacing */
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  
+  /* Typography */
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+  
+  /* Other */
+  --radius-md: 6px;
+  --transition-normal: 0.2s ease;
 }
 ```
 
-### Customization
-Override design tokens to customize the appearance:
-
-```css
-:root {
-  --color-primary: #your-brand-color;
-  --font-sans: 'Your Custom Font', system-ui;
-}
-```
-
-## 🛠️ Development
+## 🔧 Development
 
 ### Prerequisites
-- Node.js 20+
+- Node.js 16+
 - npm or yarn
 
 ### Setup
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/web-components.git
-cd web-components
+git clone https://github.com/yourusername/web-blocks.git
+cd web-blocks
 
 # Install dependencies
 npm install
 
 # Start Storybook
 npm run storybook
-```
 
-### Available Scripts
-- `npm run storybook` - Start Storybook development server
-- `npm run build-storybook` - Build Storybook for production
-- `npm run build-components` - Build components for distribution
-- `npm run preview` - Preview built Storybook locally
+# Build for production
+npm run build-storybook
+```
 
 ### Project Structure
 ```
-web-components/
-├── .github/workflows/     # GitHub Actions
-├── .storybook/            # Storybook configuration
-├── src/
-│   ├── components/        # Component implementations
-│   │   ├── button/
-│   │   ├── card/
-│   │   ├── input/
-│   │   ├── badge/
-│   │   └── modal/
-│   ├── styles/            # Design tokens and reset
-│   └── utils/             # Utility functions
-├── dist/                  # Built components for CDN
-├── scripts/               # Build scripts
-└── public/                # Static assets
+src/
+├── components/
+│   ├── button/
+│   │   ├── Button.js          # Component class
+│   │   ├── button.html        # Web component definition
+│   │   ├── Button.stories.js  # Storybook stories
+│   │   └── README.md          # Component documentation
+│   ├── input/
+│   │   ├── Input.js
+│   │   ├── input.html
+│   │   ├── Input.stories.js
+│   │   └── README.md
+│   └── index.js               # Main exports
+├── styles/
+│   ├── tokens.css             # Design tokens
+│   └── reset.css              # CSS reset
+└── utils/
+    └── helpers.js             # Utility functions
 ```
 
-## 🚀 Deployment
+## 🌐 Browser Support
 
-### GitHub Pages
-Storybook is automatically deployed to GitHub Pages on every push to the `main` branch.
-
-### CDN Distribution
-Components are distributed via jsDelivr CDN:
-- **Latest**: `https://cdn.jsdelivr.net/gh/yourusername/web-components@main/dist/`
-- **Specific Version**: `https://cdn.jsdelivr.net/gh/yourusername/web-components@v0.1.0/dist/`
-
-## 🧪 Testing
-
-### Browser Support
-- Chrome 60+
-- Firefox 60+
-- Safari 12+
+- Chrome 54+
+- Firefox 63+
+- Safari 10.1+
 - Edge 79+
 
-### Accessibility
-All components follow WCAG 2.1 AA guidelines:
-- Keyboard navigation
-- Screen reader support
-- Focus management
-- Color contrast compliance
+## 📚 Documentation
 
-## 📦 CDN Usage
-
-### Individual Components
-```html
-<!-- Button -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yourusername/web-components@main/dist/button/button.css">
-<script type="module">
-  import { Button } from 'https://cdn.jsdelivr.net/gh/yourusername/web-components@main/dist/button/button.js';
-</script>
-
-<!-- Card -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yourusername/web-components@main/dist/card/card.css">
-<script type="module">
-  import { Card } from 'https://cdn.jsdelivr.net/gh/yourusername/web-components@main/dist/card/card.js';
-</script>
-```
-
-### All Components
-```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yourusername/web-components@main/dist/index.css">
-<script type="module">
-  import { Button, Card, Input, Badge, Modal } from 'https://cdn.jsdelivr.net/gh/yourusername/web-components@main/dist/index.js';
-</script>
-```
+- [Storybook Documentation](https://yourusername.github.io/web-blocks) - Interactive component playground
+- [Component API Reference](./src/components/) - Detailed API documentation
+- [Design System](./src/styles/) - Design tokens and theming guide
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
-
-### Component Status
-- **Stable**: Production-ready components
-- **Beta**: Feature-complete, may have minor issues
-- **Experimental**: New features, API may change
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit your changes: `git commit -m 'Add amazing feature'`
+4. Push to the branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
 
 ## 📄 License
 
-MIT License - see [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🔗 Links
+## 🙏 Acknowledgments
 
-- **[Storybook Documentation](https://yourusername.github.io/web-components)**
-- **[GitHub Repository](https://github.com/yourusername/web-components)**
-- **[Issue Tracker](https://github.com/yourusername/web-components/issues)**
-- **[Changelog](https://github.com/yourusername/web-components/blob/main/CHANGELOG.md)**
-
----
-
-Built with ❤️ using vanilla JavaScript and modern web standards.
+- Built with [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components)
+- Documented with [Storybook](https://storybook.js.org/)
+- Styled with modern CSS and custom properties

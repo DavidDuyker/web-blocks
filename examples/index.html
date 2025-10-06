@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Components Library - Examples</title>
+    <link rel="stylesheet" href="../src/styles/tokens.css">
+    <link rel="stylesheet" href="../src/styles/reset.css">
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.6;
+            background-color: var(--color-gray-50);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .demo-section {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .demo-section h2 {
+            margin-top: 0;
+            color: var(--color-gray-900);
+            border-bottom: 2px solid var(--color-primary);
+            padding-bottom: 0.5rem;
+        }
+        
+        .component-demo {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: var(--color-gray-50);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--color-gray-200);
+        }
+        
+        .component-demo h3 {
+            margin-top: 0;
+            color: var(--color-gray-700);
+            font-size: var(--font-size-lg);
+        }
+        
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .code-block {
+            background: var(--color-gray-900);
+            color: var(--color-gray-100);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: var(--font-size-sm);
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        .status-badges {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+        
+        .form-demo {
+            max-width: 400px;
+            margin: 1rem 0;
+        }
+        
+        .modal-trigger {
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎉 Web Components Library</h1>
+        <p>Modern, accessible, and framework-agnostic UI components built with Web Components</p>
+        <div class="status-badges">
+            <wc-badge variant="success">No Build Required</wc-badge>
+            <wc-badge variant="primary">Framework Agnostic</wc-badge>
+            <wc-badge variant="info">Accessible</wc-badge>
+            <wc-badge variant="warning">Mobile Ready</wc-badge>
+        </div>
+    </div>
+
+    <!-- Button Examples -->
+    <div class="demo-section">
+        <h2>🔘 Button Component</h2>
+        
+        <div class="component-demo">
+            <h3>Basic Buttons</h3>
+            <div class="demo-grid">
+                <wc-button variant="primary">Primary Button</wc-button>
+                <wc-button variant="secondary">Secondary Button</wc-button>
+                <wc-button variant="ghost">Ghost Button</wc-button>
+                <wc-button variant="danger">Danger Button</wc-button>
+            </div>
+            <div class="code-block">
+&lt;wc-button variant="primary"&gt;Primary Button&lt;/wc-button&gt;
+&lt;wc-button variant="secondary"&gt;Secondary Button&lt;/wc-button&gt;
+&lt;wc-button variant="ghost"&gt;Ghost Button&lt;/wc-button&gt;
+&lt;wc-button variant="danger"&gt;Danger Button&lt;/wc-button&gt;
+            </div>
+        </div>
+
+        <div class="component-demo">
+            <h3>Button Sizes</h3>
+            <div class="demo-grid">
+                <wc-button variant="primary" size="small">Small</wc-button>
+                <wc-button variant="primary" size="medium">Medium</wc-button>
+                <wc-button variant="primary" size="large">Large</wc-button>
+            </div>
+        </div>
+
+        <div class="component-demo">
+            <h3>Button States</h3>
+            <div class="demo-grid">
+                <wc-button variant="primary">Normal</wc-button>
+                <wc-button variant="primary" disabled>Disabled</wc-button>
+                <wc-button variant="primary" loading>Loading</wc-button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card Examples -->
+    <div class="demo-section">
+        <h2>🃏 Card Component</h2>
+        
+        <div class="component-demo">
+            <h3>Basic Cards</h3>
+            <div class="demo-grid">
+                <wc-card variant="default" size="small">
+                    <div slot="header">
+                        <h3 class="card__title">Default Card</h3>
+                        <p class="card__subtitle">A simple card with subtle styling</p>
+                    </div>
+                    <div slot="body">
+                        This is the card content. It can contain any HTML elements.
+                    </div>
+                    <div slot="footer">
+                        <wc-button variant="primary" size="small">Action</wc-button>
+                    </div>
+                </wc-card>
+
+                <wc-card variant="elevated" size="small">
+                    <div slot="header">
+                        <h3 class="card__title">Elevated Card</h3>
+                    </div>
+                    <div slot="body">
+                        This card has a more prominent shadow for emphasis.
+                    </div>
+                </wc-card>
+
+                <wc-card variant="outlined" size="small">
+                    <div slot="body">
+                        <h3 class="card__title">Outlined Card</h3>
+                        <p>This card has a prominent border instead of a shadow.</p>
+                    </div>
+                </wc-card>
+            </div>
+            <div class="code-block">
+&lt;wc-card variant="default" size="small"&gt;
+  &lt;div slot="header"&gt;
+    &lt;h3 class="card__title"&gt;Card Title&lt;/h3&gt;
+    &lt;p class="card__subtitle"&gt;Card subtitle&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div slot="body"&gt;
+    Card content goes here
+  &lt;/div&gt;
+  &lt;div slot="footer"&gt;
+    &lt;wc-button variant="primary"&gt;Action&lt;/wc-button&gt;
+  &lt;/div&gt;
+&lt;/wc-card&gt;
+            </div>
+        </div>
+    </div>
+
+    <!-- Input Examples -->
+    <div class="demo-section">
+        <h2>📝 Input Component</h2>
+        
+        <div class="component-demo">
+            <h3>Basic Inputs</h3>
+            <div class="form-demo">
+                <wc-input 
+                    label="Your Name" 
+                    placeholder="Enter your name"
+                    helper="This will be displayed publicly"
+                    size="medium">
+                </wc-input>
+                
+                <wc-input 
+                    label="Email Address" 
+                    type="email"
+                    placeholder="your@email.com"
+                    state="error"
+                    size="medium">
+                    <div slot="error">Please enter a valid email address</div>
+                </wc-input>
+                
+                <wc-input 
+                    label="Password" 
+                    type="password"
+                    placeholder="Enter your password"
+                    size="medium">
+                </wc-input>
+            </div>
+            <div class="code-block">
+&lt;wc-input 
+  label="Your Name" 
+  placeholder="Enter your name"
+  helper="This will be displayed publicly"
+  size="medium"&gt;
+&lt;/wc-input&gt;
+
+&lt;wc-input 
+  label="Email Address" 
+  type="email"
+  placeholder="your@email.com"
+  state="error"&gt;
+  &lt;div slot="error"&gt;Please enter a valid email address&lt;/div&gt;
+&lt;/wc-input&gt;
+            </div>
+        </div>
+    </div>
+
+    <!-- Badge Examples -->
+    <div class="demo-section">
+        <h2>🏷️ Badge Component</h2>
+        
+        <div class="component-demo">
+            <h3>Badge Variants</h3>
+            <div class="status-badges">
+                <wc-badge variant="default">Default</wc-badge>
+                <wc-badge variant="primary">Primary</wc-badge>
+                <wc-badge variant="success">Success</wc-badge>
+                <wc-badge variant="warning">Warning</wc-badge>
+                <wc-badge variant="danger">Danger</wc-badge>
+                <wc-badge variant="info">Info</wc-badge>
+            </div>
+        </div>
+
+        <div class="component-demo">
+            <h3>Badge Sizes & Shapes</h3>
+            <div class="status-badges">
+                <wc-badge variant="primary" size="small" shape="rounded">Small</wc-badge>
+                <wc-badge variant="success" size="medium" shape="pill">Medium Pill</wc-badge>
+                <wc-badge variant="info" size="large" shape="square">Large Square</wc-badge>
+            </div>
+        </div>
+
+        <div class="component-demo">
+            <h3>Dismissible Badges</h3>
+            <div class="status-badges">
+                <wc-badge variant="primary" dismissible>Dismissible</wc-badge>
+                <wc-badge variant="success" dismissible>Success Badge</wc-badge>
+                <wc-badge variant="warning" dismissible>Warning Badge</wc-badge>
+            </div>
+            <div class="code-block">
+&lt;wc-badge variant="primary" dismissible&gt;Dismissible Badge&lt;/wc-badge&gt;
+&lt;wc-badge variant="success" size="medium" shape="pill"&gt;Success&lt;/wc-badge&gt;
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Examples -->
+    <div class="demo-section">
+        <h2>🪟 Modal Component</h2>
+        
+        <div class="component-demo">
+            <h3>Modal Demo</h3>
+            <div class="modal-trigger">
+                <wc-button variant="primary" id="open-modal">Open Modal</wc-button>
+            </div>
+            
+            <wc-modal id="demo-modal" size="medium" closable backdrop>
+                <div slot="title">Welcome to Web Components!</div>
+                <div slot="body">
+                    <p>This is a modal dialog built with Web Components. It includes:</p>
+                    <ul>
+                        <li>✅ Accessibility features (ARIA attributes, focus management)</li>
+                        <li>✅ Keyboard navigation (Escape to close, Tab trapping)</li>
+                        <li>✅ Backdrop click to close</li>
+                        <li>✅ Smooth animations</li>
+                        <li>✅ Mobile responsive design</li>
+                    </ul>
+                    <p>Try pressing <kbd>Escape</kbd> or clicking outside to close this modal.</p>
+                </div>
+                <div slot="footer">
+                    <wc-button variant="secondary" id="close-modal">Close</wc-button>
+                    <wc-button variant="primary">Save Changes</wc-button>
+                </div>
+            </wc-modal>
+            
+            <div class="code-block">
+&lt;wc-modal id="demo-modal" size="medium" closable backdrop&gt;
+  &lt;div slot="title"&gt;Modal Title&lt;/div&gt;
+  &lt;div slot="body"&gt;
+    Modal content goes here
+  &lt;/div&gt;
+  &lt;div slot="footer"&gt;
+    &lt;wc-button variant="primary"&gt;Save&lt;/wc-button&gt;
+  &lt;/div&gt;
+&lt;/wc-modal&gt;
+            </div>
+        </div>
+    </div>
+
+    <!-- Usage Instructions -->
+    <div class="demo-section">
+        <h2>🚀 How to Use</h2>
+        <div class="component-demo">
+            <h3>1. Include the Components</h3>
+            <div class="code-block">
+&lt;!-- Include design tokens and reset styles --&gt;
+&lt;link rel="stylesheet" href="./src/styles/tokens.css"&gt;
+&lt;link rel="stylesheet" href="./src/styles/reset.css"&gt;
+
+&lt;!-- Include the component you want to use --&gt;
+&lt;script src="./src/components/button/button.html"&gt;&lt;/script&gt;
+&lt;script src="./src/components/card/card.html"&gt;&lt;/script&gt;
+&lt;script src="./src/components/input/input.html"&gt;&lt;/script&gt;
+&lt;script src="./src/components/badge/badge.html"&gt;&lt;/script&gt;
+&lt;script src="./src/components/modal/modal.html"&gt;&lt;/script&gt;
+            </div>
+        </div>
+
+        <div class="component-demo">
+            <h3>2. Use in Your HTML</h3>
+            <div class="code-block">
+&lt;!-- No JavaScript required! --&gt;
+&lt;wc-button variant="primary"&gt;Click me&lt;/wc-button&gt;
+&lt;wc-card variant="elevated"&gt;
+  &lt;div slot="body"&gt;Card content&lt;/div&gt;
+&lt;/wc-card&gt;
+            </div>
+        </div>
+
+        <div class="component-demo">
+            <h3>3. Listen to Events</h3>
+            <div class="code-block">
+&lt;script&gt;
+// Listen to component events
+document.addEventListener('wc-button-click', (e) =&gt; {
+  console.log('Button clicked!', e.detail);
+});
+
+document.addEventListener('wc-modal-open', (e) =&gt; {
+  console.log('Modal opened!', e.detail);
+});
+
+// Programmatic control
+const modal = document.getElementById('my-modal');
+modal.setAttribute('open', ''); // Open modal
+modal.removeAttribute('open'); // Close modal
+&lt;/script&gt;
+            </div>
+        </div>
+    </div>
+
+    <!-- Load all components -->
+    <script src="../src/components/button/button.html"></script>
+    <script src="../src/components/card/card.html"></script>
+    <script src="../src/components/input/input.html"></script>
+    <script src="../src/components/badge/badge.html"></script>
+    <script src="../src/components/modal/modal.html"></script>
+
+    <script>
+        // Demo interactions
+        document.addEventListener('DOMContentLoaded', () => {
+            const openModalBtn = document.getElementById('open-modal');
+            const closeModalBtn = document.getElementById('close-modal');
+            const modal = document.getElementById('demo-modal');
+
+            // Open modal
+            openModalBtn.addEventListener('click', () => {
+                modal.setAttribute('open', '');
+            });
+
+            // Close modal
+            closeModalBtn.addEventListener('click', () => {
+                modal.removeAttribute('open');
+            });
+
+            // Listen to modal events
+            modal.addEventListener('wc-modal-open', () => {
+                console.log('Modal opened!');
+            });
+
+            modal.addEventListener('wc-modal-close', () => {
+                console.log('Modal closed!');
+            });
+
+            // Listen to button clicks
+            document.addEventListener('wc-button-click', (e) => {
+                console.log('Button clicked:', e.detail);
+            });
+
+            // Listen to badge dismissals
+            document.addEventListener('wc-badge-dismiss', (e) => {
+                console.log('Badge dismissed:', e.detail);
+            });
+
+            // Listen to input changes
+            document.addEventListener('wc-input-change', (e) => {
+                console.log('Input changed:', e.detail.value);
+            });
+        });
+    </script>
+</body>
+</html>
+

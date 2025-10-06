@@ -1,69 +1,181 @@
 /**
  * Button Component
- * A flexible button component with multiple variants and sizes
- * @param {Object} options - Component configuration
- * @param {string} options.label - Button text
- * @param {string} options.variant - 'primary'|'secondary'|'ghost'|'danger'
- * @param {string} options.size - 'small'|'medium'|'large'
- * @param {boolean} options.disabled - Whether the button is disabled
- * @param {Function} options.onClick - Click handler
- * @param {string} options.type - HTML button type ('button'|'submit'|'reset')
- * @param {string} options.className - Additional CSS classes
- * @param {Object} options.attributes - Additional HTML attributes
+ * A simple underlined text link with corner lines animation on hover/focus.
+ * 
+ * @example
+ * ```javascript
+ * import { Button } from './Button.js';
+ * 
+ * const button = new Button({
+ *   label: 'Click me',
+ *   href: '/some-page',
+ *   onClick: () => console.log('clicked')
+ * });
+ * 
+ * document.body.appendChild(button.render());
+ * ```
  */
 export class Button {
-  constructor(options = {}) {
-    this.options = {
-      label: 'Button',
-      variant: 'primary',
-      size: 'medium',
+  constructor(props = {}) {
+    this.props = {
+      label: '',
       disabled: false,
-      onClick: () => {},
-      type: 'button',
-      className: '',
-      attributes: {},
-      ...options
+      href: null,
+      target: null,
+      onClick: null,
+      ...props
     };
   }
 
+  /**
+   * Renders the button element
+   * @returns {HTMLElement} The rendered button element
+   */
   render() {
-    const button = document.createElement('button');
+    // Ensure the web component is registered
+    this.ensureWebComponentRegistered();
     
-    // Base classes
-    const baseClasses = ['btn'];
-    const variantClass = `btn--${this.options.variant}`;
-    const sizeClass = `btn--${this.options.size}`;
-    const disabledClass = this.options.disabled ? 'btn--disabled' : '';
-    
-    // Combine all classes
-    const allClasses = [
-      ...baseClasses,
-      variantClass,
-      sizeClass,
-      disabledClass,
-      this.options.className
-    ].filter(Boolean);
-    
-    button.className = allClasses.join(' ');
+    const button = document.createElement('wc-button');
     
     // Set attributes
-    button.type = this.options.type;
-    button.disabled = this.options.disabled;
-    button.textContent = this.options.label;
+    if (this.props.href) {
+      button.setAttribute('href', this.props.href);
+    }
     
-    // Add custom attributes
-    Object.entries(this.options.attributes).forEach(([key, value]) => {
-      button.setAttribute(key, value);
-    });
+    if (this.props.target) {
+      button.setAttribute('target', this.props.target);
+    }
     
-    // Add click handler if not disabled
-    if (!this.options.disabled) {
-      button.addEventListener('click', this.options.onClick);
+    if (this.props.disabled) {
+      button.setAttribute('disabled', '');
+    }
+    
+    // Set content
+    button.textContent = this.props.label;
+    
+    // Add event listeners
+    if (this.props.onClick) {
+      button.addEventListener('wc-button-click', (event) => {
+        this.props.onClick(event.detail.originalEvent);
+      });
     }
     
     return button;
   }
+
+  /**
+   * Updates the button properties and re-renders
+   * @param {Object} newProps - New properties to merge
+   */
+  update(newProps) {
+    this.props = { ...this.props, ...newProps };
+    return this;
+  }
+
+  /**
+   * Ensures the web component is registered
+   * @private
+   */
+  ensureWebComponentRegistered() {
+    if (!customElements.get('wc-button')) {
+      // Load the HTML file and register the component
+      this.loadWebComponent();
+    }
+  }
+
+  /**
+   * Loads and registers the web component from HTML file
+   * @private
+   */
+  loadWebComponent() {
+    // Check if already registered
+    if (customElements.get('wc-button')) {
+      return;
+    }
+
+    // For build tools that support importing HTML as text
+    try {
+      // This will work with Vite and other modern bundlers
+      import('./button.html?raw').then(html => {
+        this.registerFromHTML(html.default);
+      }).catch(() => {
+        // Fallback: try to load via fetch
+        this.loadWebComponentViaFetch();
+      });
+    } catch (error) {
+      // Fallback: try to load via fetch
+      this.loadWebComponentViaFetch();
+    }
+  }
+
+  /**
+   * Fallback method to load web component via fetch
+   * @private
+   */
+  async loadWebComponentViaFetch() {
+    try {
+      const response = await fetch('./button.html');
+      const html = await response.text();
+      this.registerFromHTML(html);
+    } catch (error) {
+      console.error('Failed to load button web component:', error);
+      // Create a minimal fallback button
+      this.createFallbackButton();
+    }
+  }
+
+  /**
+   * Registers the web component from HTML string
+   * @private
+   */
+  registerFromHTML(html) {
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = html;
+    
+    // Extract and register the template and script
+    const template = tempDiv.querySelector('#wc-button-template');
+    const script = tempDiv.querySelector('script');
+    
+    if (template) {
+      document.head.appendChild(template);
+    }
+    
+    if (script) {
+      // Execute the script to register the component
+      const scriptElement = document.createElement('script');
+      scriptElement.textContent = script.textContent;
+      document.head.appendChild(scriptElement);
+    }
+  }
+
+  /**
+   * Creates a minimal fallback button if web component fails to load
+   * @private
+   */
+  createFallbackButton() {
+    class FallbackButton extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+        this.shadowRoot.innerHTML = `
+          <style>
+            .button-link {
+              display: inline-block;
+              color: #007bff;
+              text-decoration: underline;
+              cursor: pointer;
+            }
+          </style>
+          <a class="button-link"><slot></slot></a>
+        `;
+      }
+    }
+    customElements.define('wc-button', FallbackButton);
+  }
 }
 
-// Export for direct CDN usage
+// Static factory method for convenience
+Button.create = (props) => new Button(props);
+
+// Export default for easier importing
 export default Button;
