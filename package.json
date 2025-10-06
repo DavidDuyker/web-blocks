@@ -10,7 +10,12 @@
     "serve": "npx http-server . -p 8080 -o examples/index.html",
     "deploy-storybook": "npm run build-storybook && npx gh-pages -d storybook-static"
   },
-  "keywords": ["web-components", "vanilla-js", "storybook", "ui-library"],
+  "keywords": [
+    "web-components",
+    "vanilla-js",
+    "storybook",
+    "ui-library"
+  ],
   "author": "",
   "license": "MIT",
   "main": "src/components/index.js",
@@ -37,13 +42,15 @@
     "README.md"
   ],
   "devDependencies": {
-    "@storybook/addon-a11y": "^8.6.14",
-    "@storybook/addon-docs": "^8.6.14",
-    "@storybook/addon-essentials": "^8.6.14",
-    "@storybook/addon-links": "^8.6.14",
-    "@storybook/html-vite": "^8.6.14",
+    "@storybook/addon-a11y": "^9.1.10",
+    "@storybook/addon-docs": "^9.1.10",
+    "@storybook/addon-links": "^9.1.10",
+    "@storybook/addon-themes": "^9.1.10",
+    "@storybook/html-vite": "^9.1.10",
     "gh-pages": "^6.1.1",
-    "storybook": "^8.6.14",
-    "vite": "^5.0.0"
-  }
+    "remark-gfm": "^4.0.1",
+    "storybook": "^9.1.10",
+    "vite": "^6.3.6"
+  },
+  "dependencies": {}
 }

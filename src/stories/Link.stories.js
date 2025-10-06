@@ -1,4 +1,4 @@
-import { Link } from './Link.js';
+import { Link } from '../components/link/Link.js';
 
 export default {
   title: 'Components/Link',

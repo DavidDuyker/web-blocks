@@ -1,11 +1,11 @@
-import { Button } from './Button.js';
+import { Button } from '../components/button/Button.js';
 
 export default {
   title: 'Components/Button',
   tags: ['autodocs'],
   parameters: {
     status: {
-      type: 'stable',
+      type: 'development',
     },
     docs: {
       description: {

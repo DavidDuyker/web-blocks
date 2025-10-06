@@ -1,27 +1,30 @@
-
-
-/** @type { import('@storybook/html-vite').StorybookConfig } */
 const config = {
-  "stories": [
-    "../src/components/Introduction.stories.js",
-    "../src/components/**/*.stories.js"
-  ],
-  "addons": [
-    "@storybook/addon-essentials",
+  stories: ['../src/**/*.stories.js'],
+  addons: [
     "@storybook/addon-links",
     "@storybook/addon-a11y",
-    "@storybook/addon-docs"
+    "@storybook/addon-docs",
+    "@storybook/addon-themes",
   ],
-  "framework": {
-    "name": "@storybook/html-vite",
-    "options": {}
+  framework: {
+    name: "@storybook/html-vite",
+    options: {}
   },
-  "outputDir": "../storybook-static",
-  "features": {
-    "buildStoriesJson": true
+  outputDir: "../storybook-static",
+  features: {
+    buildStoriesJson: true
   },
-  "docs": {
-    "defaultName": "Docs"
-  }
+  docs: {
+    defaultName: "Docs",
+    autodocs: true 
+  },
+  core: {
+    disableTelemetry: true,
+  },
+  managerHead: (head) => `
+    ${head}
+    <title>web blocks</title>
+  `,
 };
+
 export default config;
