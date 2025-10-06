@@ -17,5 +17,13 @@ export default {
         { name: 'dark', value: '#1a1a1a' },
       ],
     },
+    docs: {
+      toc: true,
+    },
+    options: {
+      storySort: {
+        order: ['Introduction', 'Button', 'Input'],
+      },
+    },
   },
 };

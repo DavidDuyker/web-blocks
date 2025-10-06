@@ -3,6 +3,7 @@
 /** @type { import('@storybook/html-vite').StorybookConfig } */
 const config = {
   "stories": [
+    "../src/components/Introduction.stories.js",
     "../src/components/**/*.stories.js"
   ],
   "addons": [
@@ -19,6 +20,9 @@ const config = {
   "staticDirs": ["../stories/assets"],
   "features": {
     "buildStoriesJson": true
+  },
+  "docs": {
+    "defaultName": "Docs"
   }
 };
 export default config;
