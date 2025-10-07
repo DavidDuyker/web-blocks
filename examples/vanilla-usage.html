@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Components - Vanilla HTML Usage</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      line-height: 1.6;
+      color: #333;
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 12px;
+    }
+    
+    .header h1 {
+      margin: 0 0 1rem 0;
+      font-size: 2.5rem;
+    }
+    
+    .header p {
+      margin: 0;
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+    
+    .example {
+      margin: 3rem 0;
+      padding: 2rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      background: #f9f9f9;
+    }
+    
+    .example h2 {
+      margin-top: 0;
+      color: #333;
+      border-bottom: 2px solid #667eea;
+      padding-bottom: 0.5rem;
+    }
+    
+    .example h3 {
+      color: #555;
+      margin-top: 2rem;
+    }
+    
+    .button-group, .link-group, .input-group {
+      margin: 1rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+    
+    .code-block {
+      background: #2d3748;
+      color: #e2e8f0;
+      padding: 1rem;
+      border-radius: 8px;
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+    
+    .highlight {
+      background: #fff3cd;
+      border: 1px solid #ffeaa7;
+      border-radius: 6px;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+    
+    .form-example {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+      max-width: 500px;
+    }
+    
+    .form-example h3 {
+      margin-top: 0;
+      color: #333;
+    }
+    
+    .form-row {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-row:last-child {
+      margin-bottom: 0;
+    }
+  </style>
+  
+  <!-- Single line imports - this is all you need! -->
+  <script src="../src/components/link/Link.js"></script>
+</head>
+<body>
+  <div class="header">
+    <h1>Web Components Library</h1>
+    <p>Vanilla HTML, CSS, and JavaScript - No bundlers required!</p>
+  </div>
+
+  <div class="example">
+    <h2>🚀 Quick Start</h2>
+    <p>Add these single script tags to your HTML and you're ready to go:</p>
+    <div class="code-block">
+&lt;script src="Link.js"&gt;&lt;/script&gt;
+    </div>
+    <div class="highlight">
+      <strong>✨ That's it!</strong> All components are now available globally and ready to use.
+    </div>
+  </div>
+
+<div class="example">
+    <h2>🔗 Link Component</h2>
+    <p>Standalone link component with inline and crosshair variants.</p>
+    
+    <h3>Inline Variant</h3>
+    <div class="link-group">
+      <wc-link href="#" variant="inline">Inline Link 1</wc-link>
+      <wc-link href="#" variant="inline">Inline Link 2</wc-link>
+      <wc-link href="#" variant="inline">Inline Link 3</wc-link>
+    </div>
+    
+    <h3>Crosshair Variant (with corner lines animation)</h3>
+    <div class="link-group">
+      <wc-link href="#" variant="crosshair">Crosshair Link 1</wc-link>
+      <wc-link href="#" variant="crosshair">Crosshair Link 2</wc-link>
+      <wc-link href="#" variant="crosshair">Crosshair Link 3</wc-link>
+    </div>
+    
+    <h3>Using the Link Class</h3>
+    <div class="link-group" id="programmatic-links"></div>
+  </div>
+
+  <div class="example">
+    <h2>📝 Input Component</h2>
+    <p>Flexible input component with validation states and various input types.</p>
+    
+    <h3>Basic Inputs</h3>
+    <div class="form-example">
+      <div class="form-row">
+        <wc-input label="Email" type="email" placeholder="Enter your email" required></wc-input>
+      </div>
+      <div class="form-row">
+        <wc-input label="Password" type="password" placeholder="Enter your password" required></wc-input>
+      </div>
+      <div class="form-row">
+        <wc-input label="Phone" type="tel" placeholder="Enter your phone number"></wc-input>
+      </div>
+    </div>
+    
+    <h3>Input States</h3>
+    <div class="form-example">
+      <div class="form-row">
+        <wc-input label="Success Input" value="Valid input" state="success" helper-text="This looks good!"></wc-input>
+      </div>
+      <div class="form-row">
+        <wc-input label="Error Input" value="invalid-email" state="error" error-text="Please enter a valid email"></wc-input>
+      </div>
+      <div class="form-row">
+        <wc-input label="Warning Input" value="123" state="warning" helper-text="Please include country code"></wc-input>
+      </div>
+      <div class="form-row">
+        <wc-input label="Disabled Input" value="Cannot edit" disabled></wc-input>
+      </div>
+    </div>
+    
+    <h3>Using the Input Class</h3>
+    <div class="form-example" id="programmatic-inputs"></div>
+  </div>
+
+  <div class="example">
+    <h2>📋 Complete Form Example</h2>
+    <p>A real-world example showing all components working together.</p>
+    
+    <div class="form-example" id="complete-form">
+      <h3>Contact Form</h3>
+      <form id="contact-form">
+        <div class="form-row">
+          <wc-input label="Full Name" type="text" placeholder="Enter your full name" required></wc-input>
+        </div>
+        <div class="form-row">
+          <wc-input label="Email" type="email" placeholder="Enter your email" required></wc-input>
+        </div>
+        <div class="form-row">
+          <wc-input label="Phone" type="tel" placeholder="Enter your phone number"></wc-input>
+        </div>
+        <div class="form-row">
+          <wc-input label="Message" type="text" placeholder="Enter your message"></wc-input>
+        </div>
+        <div class="form-row">
+          <wc-button type="submit">Submit Form</wc-button>
+          <wc-link href="#" variant="inline">Cancel</wc-link>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="example">
+    <h2>💻 Code Examples</h2>
+    
+    <h3>Direct Web Component Usage</h3>
+    <div class="code-block">
+// Create elements directly
+const button = document.createElement('wc-button');
+button.textContent = 'Click me';
+button.setAttribute('href', 'https://example.com');
+document.body.appendChild(button);
+
+const input = document.createElement('wc-input');
+input.setAttribute('label', 'Email');
+input.setAttribute('type', 'email');
+input.setAttribute('placeholder', 'Enter your email');
+document.body.appendChild(input);
+    </div>
+    
+    <h3>Using JavaScript Classes</h3>
+    <div class="code-block">
+// Using the Button class
+const button = new Button({
+  label: 'Click me',
+  href: '/some-page',
+  onClick: () => console.log('clicked')
+});
+document.body.appendChild(button.render());
+
+// Using the Input class
+const input = new Input({
+  label: 'Email',
+  type: 'email',
+  placeholder: 'Enter your email',
+  onChange: (e) => console.log('Value changed:', e.detail.value)
+});
+document.body.appendChild(input.render());
+
+// Using the Link class
+const link = new Link({
+  label: 'Visit our site',
+  href: 'https://example.com',
+  variant: 'crosshair'
+});
+document.body.appendChild(link.render());
+    </div>
+  </div>
+
+  <script>
+   
+  </script>
+</body>
+</html>

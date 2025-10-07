@@ -1,4 +1,5 @@
-import { Link } from '../components/link/Link.js';
+// Import the Link component
+import '../components/link/Link.js';
 
 export default {
   title: 'Components/Link',
@@ -31,7 +32,7 @@ export default {
 
 export const Inline = {
   args: {
-    label: 'Inline link',
+    label: 'Link Text',
     href: '#',
     variant: 'inline',
   },
@@ -43,7 +44,7 @@ export const Inline = {
 
 export const Crosshair = {
   args: {
-    label: 'Crosshair link',
+    label: 'Link Text',
     href: '#',
     variant: 'crosshair',
   },
@@ -63,8 +64,8 @@ export const Gallery = {
     const examples = [
       { label: 'Home', href: '#', variant: 'inline' },
       { label: 'About', href: '#', variant: 'crosshair' },
-      { label: 'Contact', href: '#', variant: 'inline' },
-      { label: 'Services', href: '#', variant: 'crosshair' },
+      { label: 'Inline', href: '#', variant: 'inline' },
+      { label: 'Crosshair', href: '#', variant: 'crosshair' },
     ];
 
     examples.forEach(props => {

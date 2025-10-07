@@ -8,7 +8,9 @@ const config = {
   ],
   framework: {
     name: "@storybook/html-vite",
-    options: {}
+    options: {
+      viteConfigPath: './vite.config.js', // Use custom Vite config
+    }
   },
   outputDir: "../storybook-static",
   features: {
